@@ -258,7 +258,7 @@ wordcloud(words = keyw$keyword, freq = keyw$freq, scale=c(4,0.5),colors = brewer
 Putting it all together: R shiny app
 ------------------------------------
 
-To combine all the work I did into something more presentable and user friendly, I built a shiny app that does article summarization using the methods discussed above. You can access the app by clicking the link **here** (<https://ruo-ma.shinyapps.io/Article_Summarizer/>).
+To combine all the work I did into something more presentable and user friendly, I built a shiny app that does article summarization using the methods discussed above. **You can access the app by clicking the link here** (<https://ruo-ma.shinyapps.io/Article_Summarizer/>).
 
 Please note that I am using a free version of the shiny app server so there is 25 hour limit on the active time the app can have each month. Please do not over stay.
 
