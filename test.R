@@ -26,3 +26,4 @@ wordcloud(words = keyw$keyword, freq = keyw$freq, scale=c(4,0.5),colors = brewer
 
 
 # add loading text: https://stackoverflow.com/questions/17325521/r-shiny-display-loading-message-while-function-is-running
+# readme.md through rmarkdown: https://stackoverflow.com/questions/51957921/is-it-possible-to-put-a-readme-file-for-r-code-on-github-that-displays-output
