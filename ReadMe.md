@@ -42,14 +42,19 @@ Next, use the html\_text function to extract only the texts from the web data.
 web_text <-  rvest::html_text(rvest::html_nodes(webpage, "p"))
 
 # Take a look at first few lines
-cat(web_text[1:5], sep = "\n")
+cat(web_text[1:10], sep = "\n")
 ```
 
     ## A convicted felon has been arrested and charged in a shooting that took place on a Chicago Transit Agency Blue Line train near the University of Illinois at Chicago campus, police said Thursday.
     ## Patrick Waldon, 31, of Chicago, faces charges of aggravated battery with a firearm, armed robbery with a firearm, armed habitual criminal and issuance of a warrant, authorities said, one day after the shooting took place. 
     ## Police credited witnesses on the train and the public's help in identifying the man following the shooting. 
     ## 
-    ## "The key point in this arrest is this is public initiated," said Interim Police Superintendent Charlie Beck.
+    ## "The key point in this arrest is this is public initiated," said Interim Police Superintendent Charlie Beck. 
+    ## Authorities had released a photo of the suspect moments after the shooting took place, using images captured by CTA cameras.  
+    ## "To those who think they can commit crime on @cta, think again. You're on camera and you will be caught," Chicago police spokesman Anthony Guglielmi tweeted. 
+    ## In less than 24 hours of the shooting, police said they had identified a suspect. 
+    ## "We got multiple calls from the public ID'ing this individual and then we had great cooperation from witnesses at the scene who also identified him," Beck said. 
+    ## "This is the key to solving crime, particularly violent crime," he added.
 
 ### Importing article from local documents
 
