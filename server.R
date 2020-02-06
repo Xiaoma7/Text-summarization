@@ -11,7 +11,10 @@ shinyServer(function(input, output, session ){
     }
 
   })
-
+  
+  tagger <- udpipe_download_model("english")
+  tagger <- udpipe_load_model(tagger$file_model)
+  
 v <- reactiveValues(dorender = F)
 
 observeEvent(input$doit, {
@@ -27,11 +30,13 @@ observeEvent(input$Articlesource, {
     if (v$dorender == F) return()
    
     isolate({
-    if (input$Articlesource == "Local file upload") {
-      a_text <- article()$text
-    } else {
-      a_text <-  rvest::html_text(rvest::html_nodes(article(), "p"))
-    }
+      
+      if (input$Articlesource == "Local file upload") {
+        a_text <- article()$text
+      } else {
+        a_text <-  rvest::html_text(rvest::html_nodes(article(), "p"))
+      }
+
     top_4 <- lexRankr::lexRank(a_text,
                                docId = rep(1, length(a_text)),
                                #return 4 summary sentences
@@ -47,9 +52,6 @@ observeEvent(input$Articlesource, {
     
   })
   
-  tagger <- udpipe_download_model("english")
-  tagger <- udpipe_load_model(tagger$file_model)
-  
   output$plot <- renderPlot({
     if (v$dorender == F) return()
     
@@ -64,7 +66,7 @@ observeEvent(input$Articlesource, {
       
       # keywords
       keywd <- textrank_keywords(article$lemma,
-                                relevant = article$upos %in% c("NOUN", "ADJ"))
+                                relevant = article$upos %in% c("NOUN", "ADJ"), sep = " ")
       keyw <- subset(keywd$keywords, ngram > 1 & freq >1)
       
       # In case article too short, expand the keyword criteria
@@ -73,7 +75,7 @@ observeEvent(input$Articlesource, {
       }
     })
     
-    wordcloud(words = keyw$keyword, freq = keyw$freq, scale=c(4,0.5), colors = brewer.pal(6, "Dark2"), max.words = 100)
+    wordcloud(words = keyw$keyword, freq = keyw$freq, colors = brewer.pal(6, "Dark2"), min.freq = 2,max.words = 20)
     
   })
   

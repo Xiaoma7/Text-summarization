@@ -10,19 +10,35 @@ library(shiny)
 library(DT)
 
 shinyUI(fluidPage(
+  tags$head(tags$style(type="text/css", "
+             #loadmessage {
+               position: fixed;
+               top: 0px;
+               left: 0px;
+               width: 100%;
+               padding: 5px 0px 5px 0px;
+               text-align: center;
+               font-weight: bold;
+               font-size: 100%;
+               color: #000000;
+               background-color: #CCFF66;
+               z-index: 105;
+             }
+              #doit{background-color:orange}
+          ")), 
   titlePanel("Article Summarizer"),
   sidebarLayout(
-    sidebarPanel(
+      sidebarPanel(
       radioButtons(
         "Articlesource",
-        "Select source of the article:",
+        "Select the source of your article:",
         c("Web page", "Local file upload"),
         inline = TRUE
       ),
       conditionalPanel(
         condition = "input.Articlesource == 'Local file upload'",
          fileInput("fileRequest", 
-                   "Input article here",
+                   "Upload article here (pdf, word or text documents):",
                    accept = c(".pdf", ".docx", ".txt")
                    )
       ),
@@ -33,8 +49,11 @@ shinyUI(fluidPage(
       actionButton("doit", "Summarize !")
     ),
     mainPanel(
-      #conditionalPanel()
+      conditionalPanel(condition="$('html').hasClass('shiny-busy')",
+                       tags$div("Loading...",id="loadmessage")),
+      tags$h4("1. Article summary sentences:"),
       DT::dataTableOutput('summary'),
+      tags$h4("2. Keywords plot:"),
       plotOutput("plot")
       )
  
