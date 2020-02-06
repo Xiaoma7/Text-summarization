@@ -266,18 +266,18 @@ Please note that I am using a free version of the shiny app server so there is 2
 
 This app allows two types of article sources: 1) Link from the web, 2) Upload from local computer.
 
-![Mode selection](C:/Users/Ruochen/Desktop/Project/uic/Text-summarization-master/Capture1.png)
+![Mode selection](https://github.com/Xiaoma7/Text-summarization/blob/master/Capture1.PNG)
 
 If you are using the **Web page** mode, copy and paste the link to online article into the box:
 
-![Web Mode](C:/Users/Ruochen/Desktop/Project/uic/Text-summarization-master/Capture1.5.png)
+![Web Mode](https://github.com/Xiaoma7/Text-summarization/blob/master/Capture1.5.PNG)
 
 In the **Local file upload** mode, click on the "Browse" button and upload an article from your computer.
 
-![local mode](C:/Users/Ruochen/Desktop/Project/uic/Text-summarization-master/Capture3.png)
+![local mode](https://github.com/Xiaoma7/Text-summarization/blob/master/Capture3.PNG)
 
 Once you are done inputting the article, click on the **Summarize !** button to generate the summary sentences and keywords plots for the article:
 
-![outweb](C:/Users/Ruochen/Desktop/Project/uic/Text-summarization-master/Capture2.png)
+![outweb](https://github.com/Xiaoma7/Text-summarization/blob/master/Capture2.PNG)
 
-![outpdf](C:/Users/Ruochen/Desktop/Project/uic/Text-summarization-master/Capture4.png)
+![outpdf](https://github.com/Xiaoma7/Text-summarization/blob/master/Capture4.PNG)
