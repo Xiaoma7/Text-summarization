@@ -260,6 +260,8 @@ wordcloud(words = keyw$keyword, freq = keyw$freq, scale=c(4,0.5),colors = brewer
 
 ![](ReadMe_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
+![cloud](https://github.com/Xiaoma7/Text-summarization/blob/master/unnamed-chunk-10-1.png)
+
 Putting it all together: R shiny app
 ------------------------------------
 
