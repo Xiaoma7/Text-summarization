@@ -76,12 +76,14 @@ cat(web_text[1:10], sep = "\n")
 
 ### Importing article from local documents
 
-There are many packages in R that imports files and data. The **readtext** package is a very versatile package that can reads in
+There are many packages in R that imports files and data. The
+**readtext** package is a very versatile package that can reads in
 various forms of documents including ‘.csv’, ‘.tab’, ‘.json’, ‘.xml’,
 ‘.html’, ‘.pdf’, ‘.doc’, ‘.docx’, ‘.rtf’, ‘.xls’, ‘.xlsx’, and others.
 This is perfect for our purpose.
 
-Taking this pdf article about black population loss in Chicago that I got from UIC’s website for example.
+Taking this pdf article about black population loss in Chicago that I
+got from UIC’s website for example.
 
 ``` r
 library(readtext)
@@ -129,11 +131,13 @@ cat(firstp, sep = "\n")
 
 ## Running LexRank
 
-Once we have our text files imported, we can go ahead and perform LexRanking.  
+Once we have imported the texts from the articles, we can go ahead and
+perform Lexranking.
 
 The LexRank algorithm essentially rank the sentences in the original
-text, giving a importance score to each. We can get a summary of the
-article by extracting the top few sentences with the highest rankings.
+text, giving an importance score to each of them. Then, we can get a
+summary of the article by extracting the top few sentences with the
+highest rankings.
 
 Let’s use the NBC Chicago news as an example. Applying LexRank algorithm
 on it:
@@ -204,7 +208,7 @@ Here you have it\! The summary of the article in 4 sentences.
 To take it further, another way to summarize text is to extract keywords
 from it. The basic approach for extracting keywords is finding the words
 that are most frequently occuring and occur somehow together in a plain
-text. There are more sophisticate methods of extracting the keywords
+text. There are more sophisticated methods of extracting the keywords
 that not only consider their frequency of occurence, but also things
 like the type of words (noun, adj, verb) and their interaction with
 other words in the article. Here I use the
@@ -340,9 +344,29 @@ visually present the keywords in the article. The bigger the texts are
 in the graph, the more important or frequently occuring they are in the
 article.
 
+First, I want to make sure that I keep all the multi-word phrases in the
+wordcloud. But if the article is too short and there are not that many
+phrases left, I add in the other keywords.
+
 ``` r
+try(multi <- keyw %>% filter(ngram > 1), silent = T) # In case there are no multi-word keywords
+single <- keyw %>% filter(ngram == 1) %>% arrange(desc(freq)) # sort by descending freq
+
+if (sum(keyw$ngram > 1) > 1) {
+  if (nrow(multi) >= 20) { # if more than 20 multi phrase keywords, plot only these
+    toplot <- multi
+  } else if (nrow(multi) < 20 & nrow(keyw >= 20)) { # Fill in with most frequent singles until reach 20
+  nfill <- 20 - nrow(multi) # need to fill in this number of singles
+  toplot <- rbind(multi, single[1:nfill,])
+  } else if (nrow(multi) < 20 & nrow(keyw < 20)) { # use all multi and single keywords
+  toplot <- keyw  
+  }
+} else { # if there is no multi-phrase at all...
+  toplot <- keyw
+}
+
 library(wordcloud)
-wordcloud(words = keyw$keyword, freq = keyw$freq, scale=c(4,0.5),colors = brewer.pal(6, "Dark2"), max.words = 20, min.freq = 1)
+wordcloud(words = toplot$keyword, freq = toplot$freq, scale=c(4,0.5),colors = brewer.pal(6, "Dark2"), max.words = 20, min.freq = 1)  
 ```
 
 ![](ReadMe_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
