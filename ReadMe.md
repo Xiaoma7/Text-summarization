@@ -76,7 +76,7 @@ cat(web_text[1:10], sep = "\n")
 
 ### Importing article from local documents
 
-The **readtext** package in r is a very versatile package that can reads in
+There are many packages in R that imports files and data. The **readtext** package is a very versatile package that can reads in
 various forms of documents including ‘.csv’, ‘.tab’, ‘.json’, ‘.xml’,
 ‘.html’, ‘.pdf’, ‘.doc’, ‘.docx’, ‘.rtf’, ‘.xls’, ‘.xlsx’, and others.
 This is perfect for our purpose.
