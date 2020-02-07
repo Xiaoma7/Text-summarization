@@ -214,7 +214,7 @@ algorithm to extract keywords from the article into multi-word phrases.
 Let’s use the pdf article we read in earliear this time. Before applying
 the textrank algorithm, we first need to annotate the text. **Text
 Annotation** in natural language processing is basically a way to label
-and break down the raw sentences to make it more understandable to a
+and break down the raw sentences to make them more understandable to a
 machine learning algorithm, and also avoid feeding too much information
 into the model that can lead to overfitting. This can be done using the
 **udpipe** package in R.
