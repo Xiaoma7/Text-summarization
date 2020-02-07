@@ -88,7 +88,7 @@ observeEvent(input$Articlesource, {
 
     })
 
-    wordcloud(words = toplot$keyword, freq = toplot$freq, scale=c(4,1),colors = brewer.pal(6, "Dark2"), max.words = 20, min.freq = 1) 
+    wordcloud(words = toplot$keyword, freq = toplot$freq, scale=c(4,0.5),colors = brewer.pal(6, "Dark2"), max.words = 20, min.freq = 1) 
   })
   
 })
