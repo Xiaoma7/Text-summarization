@@ -352,7 +352,7 @@ phrases left, I add in the other keywords.
 try(multi <- keyw %>% filter(ngram > 1), silent = T) # In case there are no multi-word keywords
 single <- keyw %>% filter(ngram == 1) %>% arrange(desc(freq)) # sort by descending freq
 
-if (sum(keyw$ngram > 1) > 1) {
+if (sum(keyw$ngram >= 1) > 1) {
   if (nrow(multi) >= 20) { # if more than 20 multi phrase keywords, plot only these
     toplot <- multi
   } else if (nrow(multi) < 20 & nrow(keyw >= 20)) { # Fill in with most frequent singles until reach 20
