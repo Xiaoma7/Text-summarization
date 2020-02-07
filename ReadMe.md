@@ -129,6 +129,8 @@ cat(firstp, sep = "\n")
 
 ## Running LexRank
 
+Once we have our text files imported, we can go ahead and perform LexRanking.  
+
 The LexRank algorithm essentially rank the sentences in the original
 text, giving a importance score to each. We can get a summary of the
 article by extracting the top few sentences with the highest rankings.
