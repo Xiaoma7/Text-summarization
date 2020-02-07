@@ -69,12 +69,29 @@ observeEvent(input$Articlesource, {
                                 relevant = article$upos %in% c("NOUN", "ADJ"), sep = " ")
       
       keyw <- keywd$keywords
+      
+      try(multi <- keyw %>% filter(ngram > 1), silent = T) # In case there are no multi-word keywords
+      single <- keyw %>% filter(ngram == 1) %>% arrange(desc(freq)) # sort by descending freq
+      
+      if (sum(keyw$ngram > 1) > 0) {
+        if (nrow(multi) >= 20) { # if more than 20 multi phrase keywords, plot only these
+          toplot <- multi
+        } else if (nrow(multi) < 20 & nrow(keyw) >= 20) { # Fill in with most frequent singles until reach 20
+          nfill <- 20 - nrow(multi) # need to fill in this number of singles
+          toplot <- rbind(multi, single[1:nfill,])
+        } else if (nrow(multi) < 20 & nrow(keyw) < 20) { # use all multi and single keywords
+          toplot <- keyw  
+        }
+      } else { # if there is no multi-phrase at all...
+        toplot <- keyw
+      }
 
     })
-    
-    wordcloud(words = keyw$keyword, freq = keyw$freq, colors = brewer.pal(6, "Dark2"),scale=c(4,0.5), min.freq = 1,max.words = 20)
-    
+
+    wordcloud(words = toplot$keyword, freq = toplot$freq, scale=c(4,1),colors = brewer.pal(6, "Dark2"), max.words = 20, min.freq = 1) 
   })
   
 })
+
+
 

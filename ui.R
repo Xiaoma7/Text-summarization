@@ -10,7 +10,8 @@ library(shiny)
 library(DT)
 
 shinyUI(fluidPage(
-  tags$head(tags$style(type="text/css", "
+  tags$head(tags$style(
+            type="text/css", "
              #loadmessage {
                position: fixed;
                top: 0px;
@@ -25,6 +26,9 @@ shinyUI(fluidPage(
                z-index: 105;
              }
               #doit{background-color:orange}
+              #plot {
+                    overflow-y:scroll;
+                    }
           ")), 
   titlePanel("Article Summarizer"),
   sidebarLayout(
@@ -60,3 +64,4 @@ shinyUI(fluidPage(
   )
 ))
 
+?plotOutput
