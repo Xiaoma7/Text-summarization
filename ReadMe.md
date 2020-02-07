@@ -81,7 +81,7 @@ various forms of documents including ‘.csv’, ‘.tab’, ‘.json’, ‘.xm
 ‘.html’, ‘.pdf’, ‘.doc’, ‘.docx’, ‘.rtf’, ‘.xls’, ‘.xlsx’, and others.
 This is perfect for our purpose.
 
-Taking this pdf article I got from UIC’s website for example.
+Taking this pdf article about black population loss in Chicago that I got from UIC’s website for example.
 
 ``` r
 library(readtext)
