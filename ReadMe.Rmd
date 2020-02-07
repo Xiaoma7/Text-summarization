@@ -53,14 +53,15 @@ cat(web_text[1:10], sep = "\n")
 
 The readtext package in r is a very versatile package that can reads in various forms of documents including '.csv', '.tab', '.json', '.xml', '.html', '.pdf', '.doc', '.docx', '.rtf', '.xls', '.xlsx', and others. This is perfect for our purpose.  
 
-Taking the pdf task assignment document I got for a data scientist interview at UIC for example.  
+Taking this pdf article I got from UIC's website for example. 
 
 ```{r}
 library(readtext)
-pdf_text <- readtext("C:/Users/Ruochen/Desktop/Project/uic/Data Scientist Technical Assignment.pdf")
+pdf_text <- readtext("C:/Users/olive/Desktop/Proj/UIC/Text-summarization/today.uic.edu-UIC report examines black population loss in Chicago.pdf")
 
-# Taking a look
-cat(pdf_text$text, sep = "\n")
+# Taking a look at the first page
+firstp <- gsub("1/3.*","",pdf_text$text)
+cat(firstp, sep = "\n")
 ```  
 
 ## Running LexRank  
@@ -120,7 +121,7 @@ library(textrank)
 keywd <- textrank_keywords(article$lemma,
                           relevant = article$upos %in% c("NOUN", "ADJ"), sep = " ")
 keyw <- keywd$keywords
-keyw
+keyw[1:20,]
 ```  
 
 As you can see, the keywords are summarized by their frequency of occurence, as well as the thing called ngram, which is basically the number of co-occuring words in the phrase.  
