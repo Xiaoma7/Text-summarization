@@ -67,15 +67,12 @@ observeEvent(input$Articlesource, {
       # keywords
       keywd <- textrank_keywords(article$lemma,
                                 relevant = article$upos %in% c("NOUN", "ADJ"), sep = " ")
-      keyw <- subset(keywd$keywords, ngram > 1 & freq >1)
       
-      # In case article too short, expand the keyword criteria
-      if (nrow(keyw) < 5) {
-      keyw <- subset(keywd$keywords, freq > 1 )
-      }
+      keyw <- keywd$keywords
+
     })
     
-    wordcloud(words = keyw$keyword, freq = keyw$freq, colors = brewer.pal(6, "Dark2"), min.freq = 2,max.words = 20)
+    wordcloud(words = keyw$keyword, freq = keyw$freq, colors = brewer.pal(6, "Dark2"),scale=c(4,0.5), min.freq = 1,max.words = 20)
     
   })
   

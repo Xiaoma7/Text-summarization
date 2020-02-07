@@ -51,9 +51,9 @@ shinyUI(fluidPage(
     mainPanel(
       conditionalPanel(condition="$('html').hasClass('shiny-busy')",
                        tags$div("Loading...",id="loadmessage")),
-      tags$h4("1. Article summary sentences:"),
+      tags$h3("1. Article summary sentences:"),
       DT::dataTableOutput('summary'),
-      tags$h4("2. Keywords plot:"),
+      tags$h3("2. Keywords plot:"),
       plotOutput("plot")
       )
  
