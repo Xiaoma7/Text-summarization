@@ -6,7 +6,7 @@ Article Summarizer
 Text mining and natural language processing have been trending topics in
 the field of data science. In this project, I build a R application that
 can summarize articles of different formats in a few number of
-sentences, as well as extracting a number of keywords from the ariticle.
+sentences, as well as extracting important keywords from the ariticles.
 
 The are two main categoires in the approaches to text summarization:
 
